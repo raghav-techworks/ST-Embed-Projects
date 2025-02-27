@@ -120,6 +120,69 @@
 #define UART7_BASEADDR				(APB1_PERIPH_BASEADDR + 0x7800)			//upto 0x40007BFF
 #define UART8_BASEADDR				(APB1_PERIPH_BASEADDR + 0x7C00)			//upto 0x40007FFF
 
+
+/* Independent Watchdog(IWDG)
+ * The independent watchdog (IWDG) is clocked by its own dedicated low-speed clock (LSI) and
+ * thus stays active even if the main clock fails.
+ * The IWDG is best suited to applications which require the WD to run as a totally
+ * independent process outside the main application, but have lower timing accuracy constraints.
+ */
+
+#define IWDG_ENABLE_VALUE				0xCCCC	/* Writing to IWDG_KR, Starts the WD((except if the H/W WD option is selected)) */
+#define IWDG_RESET_VALUE				0XFFF   /* Writing to IWDG_RLR, */
+#define IWDG_RELOAD_VALUE				0xAAAA	/* Must be written by software at regular intervals to IWDG_KR, otherwise the WD generates a reset when the counter reaches 0 */
+#define IWDG_ACCESS_VALUE				0x5555  /* Writing to IWDG_KR, Enable access to the IWDG_PR and IWDG_RLR registers */
+
+/* Status Registers -> IWDG_SR */
+
+#define IWDG_SR_PVU_BITPOS		0				/* Watchdog Prescaler value update, can be updated only when RVU bit is reset.*/
+#define IWDG_SR_RVU_BITPOS		1				/* Watchdog counter reload value update, can be updated only when PVU bit is reset.*/
+
+#define IWDG_SR_RESET			0
+#define IWDG_SR_SET				1
+
+/* Status Registers -> IWDG_PR */
+
+#define IWDG_PR_DIVIDER_4			0
+#define IWDG_PR_DIVIDER_8			1
+#define IWDG_PR_DIVIDER_16			2
+#define IWDG_PR_DIVIDER_32			3
+#define IWDG_PR_DIVIDER_64			4
+#define IWDG_PR_DIVIDER_128			5
+#define IWDG_PR_DIVIDER_256_6		6
+#define IWDG_PR_DIVIDER_256_7		7
+
+/*
+ * structure for Independent Watchdog registers
+ */
+typedef struct
+{
+	__vo uint32_t IWDG_KR;		/* IWDG Key Register register,	 	Offset = 0x00 */
+	__vo uint32_t IWDG_PR;		/* IWDG PreScaler register,			Offset = 0x04 */
+	__vo uint32_t IWDG_RLR;		/* IWDG ReLoad register,			Offset = 0x08 */
+	__vo uint32_t IWDG_SR;		/* IWDG Status register,			Offset = 0x0C */
+}IWDG_RegDef_t;
+
+
+/* Window Watchdog(WWDG)
+ * The window watchdog (WWDG) clock is prescaled from the APB1 clock and
+ * has a configurable time-window that can be programmed to detect abnormally late or early application behavior.
+ * The WWDG is best suited to applications which require the watchdog to react within an accurate timing window.
+ */
+
+
+/* Early wake-up interrupt flag -> This bit is set by hardware when the counter has reached the value 0x40.
+ * It must be cleared by software by writing ‘0’. This bit is also set if the interrupt is not enabled.
+ */
+#define WWDG_SR_EWIF_BITPOS		0
+
+typedef struct
+{
+	__vo uint32_t WWDG_CR;		/* IWDG Key Register register,	 	Offset = 0x00 */
+	__vo uint32_t WWDG_CFR;		/* IWDG PreScaler register,			Offset = 0x04 */
+	__vo uint32_t WWDG_SR;		/* IWDG Status register,			Offset = 0x08 */
+}WWDG_RegDef_t;
+
 /*
  * Base addresses of peripherals which are hanging on APB2 bus
  * APB2 Bus Clock speed = 108MHz
@@ -460,17 +523,9 @@ typedef struct
 
 
 
-
-
-
-
-
-
-
-
-#include <stm32NucleoF429xxGpio_Driver.h>
-#include <stm32NucleoF429xxSPI_Driver.h>
-#include <stm32NucleoF429xxI2C_Driver.h>
+//#include <stm32NucleoF429xxGpio_Driver.h>
+//#include <stm32NucleoF429xxSPI_Driver.h>
+//#include <stm32NucleoF429xxI2C_Driver.h>
 
 
 #endif /* DRIVERS_INC_STM32NUCLEOF76XXX_H_ */
