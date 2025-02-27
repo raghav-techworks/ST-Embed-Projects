@@ -1,0 +1,26 @@
+# Build and binary files
+/Debug/
+/Release/
+/build/
+*.bin
+*.elf
+*.map
+*.lst
+*.o
+*.hex
+*.d
+
+# IDE-specific files
+.metadata/
+.settings/
+*.launch
+*.cproject
+*.project
+
+# Logs and temp files
+*.bak
+*.swp
+.vscode/
+
+# CubeMX-generated files (modify as per project needs)
+*.ioc
