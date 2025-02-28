@@ -17,8 +17,11 @@
  */
 
 #include <stdint.h>
+#include <stdio.h>
 
 #include "stm32NucleoF429xx.h"
+#include "Watchdog.h"
+
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
@@ -26,6 +29,15 @@
 
 int main(void)
 {
-    /* Loop forever */
-	for(;;);
+
+	Watchdog_DriverInit();
+
+	while(1)
+	{
+		Watchdog_Kick();
+		printf("Kicked\n");
+
+		for(uint32_t Delay = 0; Delay <= 200000; Delay++);
+		printf("Kicking\n");
+	}
 }
