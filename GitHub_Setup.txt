@@ -1,0 +1,562 @@
+
+dgsma@ADVAITH MINGW64 ~
+$ cd /d/GitHub_Projects/ST-Embed-Projects/
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ cd ..
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects
+$ git status
+fatal: not a git repository (or any of the parent directories): .git
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects
+$ cd ST-Embed-Projects/
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .gitignore
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .gitignore
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add Nucleo_F429xx/
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   Nucleo_F429xx/STM32F429ZITX_FLASH.ld
+        new file:   Nucleo_F429xx/STM32F429ZITX_RAM.ld
+        new file:   Nucleo_F429xx/Src/main.c
+        new file:   Nucleo_F429xx/Src/syscalls.c
+        new file:   Nucleo_F429xx/Src/sysmem.c
+        new file:   Nucleo_F429xx/Startup/startup_stm32f429zitx.s
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .gitignore
+
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add .gitignore
+warning: in the working copy of '.gitignore', CRLF will be replaced by LF the next time Git touches it
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   .gitignore
+        new file:   Nucleo_F429xx/STM32F429ZITX_FLASH.ld
+        new file:   Nucleo_F429xx/STM32F429ZITX_RAM.ld
+        new file:   Nucleo_F429xx/Src/main.c
+        new file:   Nucleo_F429xx/Src/syscalls.c
+        new file:   Nucleo_F429xx/Src/sysmem.c
+        new file:   Nucleo_F429xx/Startup/startup_stm32f429zitx.s
+
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git commit -m "Project set for F429ZI"
+[main 6a5fa24] Project set for F429ZI
+ 7 files changed, 1274 insertions(+)
+ create mode 100644 Nucleo_F429xx/STM32F429ZITX_FLASH.ld
+ create mode 100644 Nucleo_F429xx/STM32F429ZITX_RAM.ld
+ create mode 100644 Nucleo_F429xx/Src/main.c
+ create mode 100644 Nucleo_F429xx/Src/syscalls.c
+ create mode 100644 Nucleo_F429xx/Src/sysmem.c
+ create mode 100644 Nucleo_F429xx/Startup/startup_stm32f429zitx.s
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git push
+Enumerating objects: 14, done.
+Counting objects: 100% (14/14), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (12/12), 8.42 KiB | 2.10 MiB/s, done.
+Total 12 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), done.
+To github.com:raghav-techworks/ST-Embed-Projects.git
+   ad07842..6a5fa24  main -> main
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/Debug/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/Debug/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/Debug/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/Debug/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git check-ignore -v Nucleo_F429xx/
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git check-ignore -v Nucleo_F429xx/*
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ touch Nucleo_F429xx/Drivers/.keep
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/Debug/
+        Nucleo_F429xx/Drivers/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add Nucleo_F429xx/Drivers/.keep
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   Nucleo_F429xx/Drivers/.keep
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/Debug/
+
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git commit -m "Track empty Drivers folder"
+[main 3a75614] Track empty Drivers folder
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 Nucleo_F429xx/Drivers/.keep
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git push
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (5/5), 422 bytes | 422.00 KiB/s, done.
+Total 5 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:raghav-techworks/ST-Embed-Projects.git
+   6a5fa24..3a75614  main -> main
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add Nucleo_F429xx/Drivers/
+.keep  Inc/   Src/
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add Nucleo_F429xx/Drivers/
+.keep  Inc/   Src/
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add Nucleo_F429xx/Drivers/
+.keep  Inc/   Src/
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add Nucleo_F429xx/Drivers/Inc/.keep
+fatal: pathspec 'Nucleo_F429xx/Drivers/Inc/.keep' did not match any files
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add Nucleo_F429xx/Drivers/
+.keep  Inc/   Src/
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add Nucleo_F429xx/Drivers/
+.keep  Inc/   Src/
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add Nucleo_F429xx/Drivers/Inc/.
+./  ../
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add Nucleo_F429xx/Drivers/Inc/.
+./  ../
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add Nucleo_F429xx/Drivers/Inc/.
+./  ../
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ touch Nucleo_F429xx/Drivers/Inc/.kepp
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ touch Nucleo_F429xx/Drivers/Src/.keap
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/Debug/
+        Nucleo_F429xx/Drivers/Inc/
+        Nucleo_F429xx/Drivers/Src/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add ^C
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add ^[[200~
+fatal: pathspec '?[200~' did not match any files
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git add Nucleo_F429xx/Drivers/Inc/  Nucleo_F429xx/Drivers/Src/
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   Nucleo_F429xx/Drivers/Inc/.kepp
+        new file:   Nucleo_F429xx/Drivers/Src/.keap
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/Debug/
+
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git commit -m "Untracked folder"
+[main 65e8e66] Untracked folder
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 Nucleo_F429xx/Drivers/Inc/.kepp
+ create mode 100644 Nucleo_F429xx/Drivers/Src/.keap
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git push
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (6/6), 548 bytes | 548.00 KiB/s, done.
+Total 6 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:raghav-techworks/ST-Embed-Projects.git
+   3a75614..65e8e66  main -> main
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git tatus
+git: 'tatus' is not a git command. See 'git --help'.
+
+The most similar command is
+        status
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/Debug/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (main)
+$ git checkout -b develop
+Switched to a new branch 'develop'
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (develop)
+$ git push --set-upstream origin develop
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+remote:
+remote: Create a pull request for 'develop' on GitHub by visiting:
+remote:      https://github.com/raghav-techworks/ST-Embed-Projects/pull/new/develop
+remote:
+To github.com:raghav-techworks/ST-Embed-Projects.git
+ * [new branch]      develop -> develop
+branch 'develop' set up to track 'origin/develop'.
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (develop)
+$ git branch
+* develop
+  main
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (develop)
+$ git checkout -b T1-Setting up Controller specific headre file
+fatal: Cannot update paths and switch to branch 'T1-Setting' at the same time.
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (develop)
+$ git checkout -b T1-SettingUpControllerSpecificHeadreFile\
+> ^C
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (develop)
+$ git checkout -b T1-SettingUpControllerSpecificHeadreFile
+Switched to a new branch 'T1-SettingUpControllerSpecificHeadreFile'
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git branch
+* T1-SettingUpControllerSpecificHeadreFile
+  develop
+  main
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git checkout develop
+Switched to branch 'develop'
+Your branch is up to date with 'origin/develop'.
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (develop)
+$ git merge T1-SettingUpControllerSpecificHeadreFile
+Already up to date.
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (develop)
+$ git push origin develop
+Everything up-to-date
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (develop)
+$ git status
+On branch develop
+Your branch is up to date with 'origin/develop'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/Debug/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (develop)
+$ git branch
+  T1-SettingUpControllerSpecificHeadreFile
+* develop
+  main
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (develop)
+$ git checkout T1-SettingUpControllerSpecificHeadreFile
+Switched to branch 'T1-SettingUpControllerSpecificHeadreFile'
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git status
+On branch T1-SettingUpControllerSpecificHeadreFile
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/Debug/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git status
+On branch T1-SettingUpControllerSpecificHeadreFile
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .gitignore
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/.settings/
+        Nucleo_F429xx/README.md
+        README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git status
+On branch T1-SettingUpControllerSpecificHeadreFile
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .gitignore
+        deleted:    Nucleo_F429xx/Drivers/Inc/.kepp
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/.settings/
+        Nucleo_F429xx/Drivers/Inc/stm32NucleoF429xx.h
+        Nucleo_F429xx/README.md
+        README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git status
+On branch T1-SettingUpControllerSpecificHeadreFile
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .gitignore
+        deleted:    Nucleo_F429xx/Drivers/Inc/.kepp
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Nucleo_F429xx/Drivers/Inc/stm32NucleoF429xx.h
+        Nucleo_F429xx/README.md
+        README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git add .
+warning: in the working copy of '.gitignore', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'Nucleo_F429xx/Drivers/Inc/stm32NucleoF429xx.h', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'Nucleo_F429xx/README.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'README.md', CRLF will be replaced by LF the next time Git touches it
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git status
+On branch T1-SettingUpControllerSpecificHeadreFile
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   .gitignore
+        deleted:    Nucleo_F429xx/Drivers/Inc/.kepp
+        new file:   Nucleo_F429xx/Drivers/Inc/stm32NucleoF429xx.h
+        new file:   Nucleo_F429xx/README.md
+        new file:   README.md
+
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git config --global core.autocrlf
+input
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git config --global core.autocrlf input
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ touch .gitattributes
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git status
+On branch T1-SettingUpControllerSpecificHeadreFile
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   .gitignore
+        deleted:    Nucleo_F429xx/Drivers/Inc/.kepp
+        new file:   Nucleo_F429xx/Drivers/Inc/stm32NucleoF429xx.h
+        new file:   Nucleo_F429xx/README.md
+        new file:   README.md
+
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git commit -m "Added Readme files and Controller Specific registers"
+[T1-SettingUpControllerSpecificHeadreFile e1599a2] Added Readme files and Controller Specific registers
+ 5 files changed, 615 insertions(+), 16 deletions(-)
+ delete mode 100644 Nucleo_F429xx/Drivers/Inc/.kepp
+ create mode 100644 Nucleo_F429xx/Drivers/Inc/stm32NucleoF429xx.h
+ create mode 100644 Nucleo_F429xx/README.md
+ create mode 100644 README.md
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git push
+fatal: The current branch T1-SettingUpControllerSpecificHeadreFile has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin T1-SettingUpControllerSpecificHeadreFile
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)
+$ git push --set-upstream origin T1-SettingUpControllerSpecificHeadreFile
+Enumerating objects: 14, done.
+Counting objects: 100% (14/14), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (9/9), 6.27 KiB | 458.00 KiB/s, done.
+Total 9 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+remote:
+remote: Create a pull request for 'T1-SettingUpControllerSpecificHeadreFile' on GitHub by visiting:
+remote:      https://github.com/raghav-techworks/ST-Embed-Projects/pull/new/T1-SettingUpControllerSpecificHeadreFile
+remote:
+To github.com:raghav-techworks/ST-Embed-Projects.git
+ * [new branch]      T1-SettingUpControllerSpecificHeadreFile -> T1-SettingUpControllerSpecificHeadreFile
+branch 'T1-SettingUpControllerSpecificHeadreFile' set up to track 'origin/T1-SettingUpControllerSpecificHeadreFile'.
+
+dgsma@ADVAITH MINGW64 /d/GitHub_Projects/ST-Embed-Projects (T1-SettingUpControllerSpecificHeadreFile)

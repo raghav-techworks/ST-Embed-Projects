@@ -1,26 +1,51 @@
-# Build and binary files
-/Debug/
-/Release/
-/build/
-*.bin
-*.elf
-*.map
-*.lst
-*.o
-*.hex
-*.d
-
-# IDE-specific files
+# Ignore build output directories
+Debug/
+Release/
 .metadata/
-.settings/
-*.launch
-*.cproject
-*.project
 
-# Logs and temp files
+# Ignore CubeIDE-specific settings and temporary files
+*.launch
+*.uvoptx
+*.uvprojx
+*.dep
 *.bak
 *.swp
-.vscode/
+*.suo
+*.user
+*.cproject
+*.project
+*.settings
 
-# CubeMX-generated files (modify as per project needs)
+# Ignore generated build artifacts
+*.elf
+*.bin
+*.hex
+*.map
+*.axf
+*.lst
+*.o
+*.d
+*.a
+*.lib
+
+# Ignore CubeMX-generated files (optional)
 *.ioc
+
+# Ignore Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore auto-generated Makefiles (if not modifying manually)
+Makefile
+CMakeLists.txt
+*.mk
+
+# Ignore Git-related files
+.gitignore
+.gitattributes
