@@ -16,6 +16,22 @@
  ******************************************************************************
  */
 
+
+/* USART6 Pin Details -> APB2 Bus with Max 90MHz (PCLK2)
+ * Address	->	0x40011400 to 0x400117FF
+ * Rx		->	PG9
+ * Tx		->	PG14
+ * CTS		->	PG15
+ * RTS		->	PG8
+ * CK		->	PG7
+ *
+ * Interrupts
+ * 		Position	->	71
+ * 		Priority	->	78
+ * 		Address		-> 0x0000015C
+ * */
+
+
 #include <stdint.h>
 
 #include "stm32NucleoF429xx.h"
