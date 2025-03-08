@@ -231,8 +231,8 @@ typedef struct
 
 /* Status Registers -> IWDG_SR */
 
-#define IWDG_SR_PVU_BITPOS		0				/* Watchdog Prescaler value update, can be updated only when RVU bit is reset.*/
-#define IWDG_SR_RVU_BITPOS		1				/* Watchdog counter reload value update, can be updated only when PVU bit is reset.*/
+#define IWDG_SR_PVU		0				/* Watchdog Prescaler value update, can be updated only when RVU bit is reset.*/
+#define IWDG_SR_RVU		1				/* Watchdog counter reload value update, can be updated only when PVU bit is reset.*/
 
 #define IWDG_SR_RESET			0
 #define IWDG_SR_SET				1
@@ -270,7 +270,7 @@ typedef struct
 /* Early wake-up interrupt flag -> This bit is set by hardware when the counter has reached the value 0x40.
  * It must be cleared by software by writing ‘0’. This bit is also set if the interrupt is not enabled.
  */
-#define WWDG_SR_EWIF_BITPOS		0
+#define WWDG_SR_EWIF		0
 
 typedef struct
 {
@@ -506,32 +506,27 @@ typedef struct
  */
 typedef struct
 {
-	__vo uint32_t USART_SR;				/* USART Status Register, 		   				offset = 0x00 */
+	__vo uint32_t USART_SR;				/* USART Status Register, 		   				offset = 0x00 	Refer @USART_SR */
 	__vo uint32_t USART_DR;				/* USART Data Register,		   					offset = 0x04 */
-	__vo uint32_t USART_BRR;			/* USART Baud Rate Register,	   				offset = 0x08 */
-	__vo uint32_t USART_CR1;			/* USART Control Register 1, 	   				offset = 0x0C */
-	__vo uint32_t USART_CR2;			/* USART Control Register 2,            		offset = 0x10 */
-	__vo uint32_t USART_CR3;			/* USART Control Register 3,		   			offset = 0x14 */
+	__vo uint32_t USART_BRR;			/* USART Baud Rate Register,	   				offset = 0x08 	Refer @USART_BRR */
+	__vo uint32_t USART_CR1;			/* USART Control Register 1, 	   				offset = 0x0C 	Refer @USART_CR1 */
+	__vo uint32_t USART_CR2;			/* USART Control Register 2,            		offset = 0x10 	Refer @USART_CR2 */
+	__vo uint32_t USART_CR3;			/* USART Control Register 3,		   			offset = 0x14 	Refer @USART_CR3 */
 	__vo uint32_t USART_GTPR;			/* USART Guard Time & Prescaler Register 2,		offset = 0x18 */
 }USART_RegDef_t;
 
-/*
- * Assigning base address of each USARTx to the structure
- */
-#define USART1			((USART_RegDef_t *)USART1_BASEADDR)
-#define USART2			((USART_RegDef_t *)USART2_BASEADDR)
-#define USART3			((USART_RegDef_t *)USART3_BASEADDR)
-#define USART6			((USART_RegDef_t *)USART6_BASEADDR)
+/* Assigning base address of each USARTx to the structure */
+#define USART1			((USART_RegDef_t *)USART1_BASEADDR)		// APB2
+#define USART2			((USART_RegDef_t *)USART2_BASEADDR)		// APB1
+#define USART3			((USART_RegDef_t *)USART3_BASEADDR)		// APB1
+#define USART6			((USART_RegDef_t *)USART6_BASEADDR)		// APB2
 
-#define UART4			((USART_RegDef_t *)UART4_BASEADDR)
-#define UART5			((USART_RegDef_t *)UART5_BASEADDR)
-#define UART7			((USART_RegDef_t *)UART7_BASEADDR)
-#define UART8			((USART_RegDef_t *)UART8_BASEADDR)
+#define UART4			((USART_RegDef_t *)UART4_BASEADDR)		// APB1
+#define UART5			((USART_RegDef_t *)UART5_BASEADDR)		// APB1
+#define UART7			((USART_RegDef_t *)UART7_BASEADDR)		// APB1
+#define UART8			((USART_RegDef_t *)UART8_BASEADDR)		// APB1
 
-
-/*
- * Clock enable for USART peripheral
- */
+/* Clock enable for USART peripheral */
 #define USART1_PCLK_EN()					(RCC->APB2ENR |= (1 << 4))
 #define USART2_PCLK_EN()					(RCC->APB1ENR |= (1 << 17))
 #define USART3_PCLK_EN()					(RCC->APB1ENR |= (1 << 18))
@@ -542,9 +537,7 @@ typedef struct
 #define UART7_PCLK_EN()						(RCC->APB1ENR |= (1 << 30))
 #define UART8_PCLK_EN()						(RCC->APB1ENR |= (1 << 31))
 
-/*
- * Clock Disable for USART peripheral
- */
+/* Clock Disable for USART peripheral */
 #define USART1_PCLK_DI()					(RCC->APB2ENR &= ~(1 << 4))
 #define USART2_PCLK_DI()					(RCC->APB1ENR &= ~(1 << 17))
 #define USART3_PCLK_DI()					(RCC->APB1ENR &= ~(1 << 18))
@@ -554,6 +547,65 @@ typedef struct
 #define UART5_PCLK_DI()						(RCC->APB1ENR &= ~(1 << 20))
 #define UART7_PCLK_DI()						(RCC->APB1ENR &= ~(1 << 30))
 #define UART8_PCLK_DI()						(RCC->APB1ENR &= ~(1 << 31))
+
+/* USART Status Registers (USART_SR) Bit Positions */
+#define USART_SR_PE				0		// Parity Error
+#define USART_SR_FE				1		// Framing Error
+#define USART_SR_NF				2		// Noise Detected Flag
+#define USART_SR_ORE			3		// Over Run Error
+#define USART_SR_IDLE			4		// IDLE Line Detection
+#define USART_SR_RXNE			5		// Read Data Register Not Empty
+#define USART_SR_TC				6		// Transmission Complete
+#define USART_SR_TXE			7		// Transmit Data Register Empty
+#define USART_SR_LBD			8		// LIN Break detection Flag
+#define USART_SR_CTS			9		// CTS Flag
+
+/* USART Control Register1 (USART_CR1) Bit Positions */
+#define USART_CR1_SBK			0		// Send Break
+#define USART_CR1_RWU			1		// Receiver wake-up
+#define USART_CR1_RE			2		// Receiver Enable
+#define USART_CR1_TE			3		// Transmitter Enable
+#define USART_CR1_IDLEIE		4		// IDLE Interrupt Enable
+#define USART_CR1_RXNEIE		5		// RXNE Interrupt Enable
+#define USART_CR1_TCIE			6		// Transmission Complete Interrupt Enable
+#define USART_CR1_TXEIE			7		// TXE Interrupt Enable
+#define USART_CR1_PEIE			8		// PE Interrupt Enable
+#define USART_CR1_PS			9		// Parity Selection
+#define USART_CR1_PCE			10		// Parity Control Enable
+#define USART_CR1_WAKE			11		// Wake-up Method
+#define USART_CR1_M				12		// Word Length
+#define USART_CR1_UE			13		// USART Enable
+#define USART_CR1_OVER8			15		// Over sampling Mode
+
+/* USART Control Register2 (USART_CR2) Bit Positions */
+#define USART_CR2_ADD			0		// Address Of The USART NODE
+#define USART_CR2_LBDL			5		// LIN Break Detection Enable
+#define USART_CR2_LBDIE			6		// LIN Break Detection Interrupt Enable
+#define USART_CR2_LBCL			8		// Last Bit Clock Pulse
+#define USART_CR2_CPHA			9		// Clock Phase
+#define USART_CR2_CPOL			10		// Clock Polarity
+#define USART_CR2_CLKEN			11		// Clock Enable
+#define USART_CR2_STOP			12		// Stop Bits
+#define USART_CR2_LINEN			14		// LIN Mode Enable
+
+/* USART Control Register2 (USART_CR3) Bit Positions */
+#define USART_CR3_EIE			0		// Error Interrupt Enable
+#define USART_CR3_IREN			1		// IrDA Mode Enable
+#define USART_CR3_IRLP			2		// IrDA low-Power
+#define USART_CR3_HDSEL			3		// Half-Duplex Selection
+#define USART_CR3_NACK			4		// Smartcard NACK Enable
+#define USART_CR3_SCEN			5		// Smart Card Mode Enable
+#define USART_CR3_DMAR			6		// DMA Enable Receiver
+#define USART_CR3_DMAT			7		// DMA Enable Transmitter
+#define USART_CR3_RTSE		    8		// RTS Enable
+#define USART_CR3_CTSE			9		// CTS Enable
+#define USART_CR3_CTSIE			10		// CTS Interrupt Enable
+#define USART_CR3_ONEBIT			11		// One Sample Bit Method Enable
+
+/* USART Baud Rate Register (USART_BRR) Bit Positions */
+#define USART_BRR_DIV_FR			0		// Fraction Of USARTDIV (3:0)
+#define USART_BRR_DIV_MA			4		// Mantissa Of USARTDIV (15:4)
+
 
 
 /******************************************** END OF USART PERIPHERAL *************************************************/
