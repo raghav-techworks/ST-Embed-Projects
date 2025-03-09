@@ -117,33 +117,46 @@ void USART_SetbaudRate(USART_RegDef_t * pUSARTx, uint32_t BaudRate)
 	uint32_t M_Part, F_Part;
 
 
+
 	if (pUSARTx == USART1 || pUSARTx == USART6)
 	{
 		// Get APB2 PCLK value
+		PCLKx = 0;
 
 	}
 	else
 	{
 		// Get APB1 PCLK Value
+		PCLKx = 0;
 	}
 
 	//Check for OVER8 configuration bit
 	if (pUSARTx->USART_CR1 & (USART_CR1_OVER8 << 1))
 	{
 		//OVER8 = 1 , over sampling by 8
-		usartdiv = ((25 * PCLKx) / (2 *BaudRate));
+		usartdiv = (PCLKx / (8 * BaudRate)) * 100;
 	}
 	else
 	{
 		//OVER8 = 0 , over sampling by 16
-		usartdiv = ((25 * PCLKx) / (4 *BaudRate));
+		usartdiv = (PCLKx / (16 * BaudRate)) * 100;
 	}
 
 	M_Part = usartdiv/100;
 	tempReg |= M_Part << USART_BRR_DIV_MA;
 
+	F_Part = (usartdiv - (M_Part * 100));
 
-
+	if (pUSARTx->USART_CR1 & (USART_CR1_OVER8 << 1))
+	{
+		//OVER8 = 1 , over sampling by 8
+		F_Part = (((F_Part * 8) + 50) / 100) & ((uint8_t)0x07);
+	}
+	else
+	{
+		//OVER8 = 0 , over sampling by 16
+		F_Part = (((F_Part * 16) + 50) / 100) & ((uint8_t)0x0F);
+	}
 	tempReg |= F_Part;
 
 	pUSARTx->USART_BRR = tempReg;
