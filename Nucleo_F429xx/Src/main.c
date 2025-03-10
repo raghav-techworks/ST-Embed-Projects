@@ -17,22 +17,9 @@
  */
 
 
-/* USART6 Pin Details -> APB2 Bus with Max 90MHz (PCLK2)
- * Address	->	0x40011400 to 0x400117FF
- * Rx		->	PG9
- * Tx		->	PG14
- * CTS		->	PG15
- * RTS		->	PG8
- * CK		->	PG7
- *
- * Interrupts
- * 		Position	->	71
- * 		Priority	->	78
- * 		Address		-> 0x0000015C
- * */
-
-
 #include <stdint.h>
+#include <string.h>
+
 
 #include "stm32NucleoF429xx.h"
 
@@ -40,8 +27,80 @@
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
+
+
+USART_Handle_t usart6_handle;
+
+void USART6_Init(void)
+{
+	usart6_handle.pUSARTx = USART6;
+	usart6_handle.USART_Config.USART_Baud = USART_STD_BAUD_115200;
+	usart6_handle.USART_Config.USART_HWFlowControl = USART_HW_FLOW_CTRL_NONE;
+	usart6_handle.USART_Config.USART_Mode = USART_MODE_TXRX;
+	usart6_handle.USART_Config.USART_NoOfStopBits = STOP_BIT_1;
+	usart6_handle.USART_Config.USART_WordLength = USART_WORDLEN_8BITS;
+	usart6_handle.USART_Config.USART_ParityControl = USART_PARITY_DISABLE;
+	USART_InIt(&usart6_handle);
+}
+
+
+/* USART6 Pin Details -> APB2 Bus with Max 90MHz (PCLK2)
+ * Address	->	0x40011400 to 0x400117FF
+ * Rx		->	PG9
+ * Tx		->	PG14
+ * CTS		->	PG15
+ * RTS		->	PG8
+ * CK		->	PG7
+ * Alternate Function -> 8
+ *
+ * Interrupts
+ * 		Position	->	71
+ * 		Priority	->	78
+ * 		Address		-> 0x0000015C
+ * */
+
+void 	USART6_GPIOInit(void)
+{
+	GPIO_CofigHandle_t usart6_gpios;
+
+	usart6_gpios.pGPIOxBaseAddr = GPIOG;
+	usart6_gpios.GPIOPinConfig.GPIO_PinMode = GPIO_MODE_ALTFUN;
+	usart6_gpios.GPIOPinConfig.GPIO_PinOPType = GPIO_OP_PP;
+	usart6_gpios.GPIOPinConfig.GPIO_PinPuPdControl = GPIO_PU;
+	usart6_gpios.GPIOPinConfig.GPIO_PinSpeed = GPIO_HI_SP;
+	usart6_gpios.GPIOPinConfig.GPIO_PinAltFunMode = GPIO_ALTFUN_8;
+
+	//USART2 TX
+	usart6_gpios.GPIOPinConfig.GPIO_PinNumber  = GPIO_PIN_14;
+	GPIO_InIt(&usart6_gpios);
+
+	//USART2 RX
+	usart6_gpios.GPIOPinConfig.GPIO_PinNumber = GPIO_PIN_9;
+	GPIO_InIt(&usart6_gpios);
+}
+
+void delay(void)
+{
+	for(uint32_t i = 0 ; i < 500000/2 ; i ++);
+}
+
 int main(void)
 {
-    /* Loop forever */
-	for(;;);
+
+//	char msg[1024] = "UART Tx testing...\n\r";s
+
+	USART6_GPIOInit();
+
+	USART6_Init();
+
+	USART_PeripheralControl(USART6, ENABLE);
+	uint32_t Count = 0;
+
+	while(1)
+	{
+		printf("UART Tx testing...\n\r");
+		printf("The Count is %ld....\n\r", Count++);
+//		USART_Tx(&usart6_handle, (uint8_t *)msg,strlen(msg));
+		delay();
+	}
 }

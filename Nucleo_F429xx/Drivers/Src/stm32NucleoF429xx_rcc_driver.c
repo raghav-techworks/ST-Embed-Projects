@@ -13,52 +13,53 @@ uint8_t APB1_PreScaler[4] = { 2, 4 , 8, 16};
 
 
 
-uint32_t RCC_GetPCLK1Value(void)
+uint32_t RCC_GetPCLK1Value()
 {
-	uint32_t pclk1,SystemClk;
+	uint32_t PCLK1_Value;
 
-	uint8_t clksrc,temp,ahbp,apb1p;
+	uint8_t Clk_Src, Ahb_Pre, Apb_Pre;
+	uint32_t System_Clk;
 
-	clksrc = ((RCC->CFGR >> 2) & 0x3);
+	Clk_Src = ((RCC->CFGR >> 2) & 0x3);
 
-	if(clksrc == 0 )
+	if (Clk_Src == 0)				// HSI
 	{
-		SystemClk = 16000000;
-	}else if(clksrc == 1)
+		System_Clk = 16000000;
+	}
+	else if(Clk_Src == 1)			//HSE
 	{
-		SystemClk = 8000000;
-	}else if (clksrc == 2)
+		System_Clk = 8000000;
+	}
+	else if (Clk_Src == 2)			//PLL
 	{
-		SystemClk = RCC_GetPLLOutputClock();
+
 	}
 
-	//for ahb
-	temp = ((RCC->CFGR >> 4 ) & 0xF);
+	uint8_t temp = ((RCC->CFGR >> 4) & 0xF);
 
-	if(temp < 8)
+	if (temp < 8)		// As per data sheet clock cannot be divided if AHB pre-scaler less than 8
 	{
-		ahbp = 1;
-	}else
+		Ahb_Pre = 1;
+	}
+	else
 	{
-		ahbp = AHB_PreScaler[temp-8];
+		Ahb_Pre = AHB_PreScaler[temp - 8];
 	}
 
+	temp = ((RCC->CFGR >> 10) & 0x7);
 
-
-	//apb1
-	temp = ((RCC->CFGR >> 10 ) & 0x7);
-
-	if(temp < 4)
+	if (temp < 4)		// As per data sheet clock cannot be divided if APB pre-scaler less than 4
 	{
-		apb1p = 1;
-	}else
+		Apb_Pre = 1;
+	}
+	else
 	{
-		apb1p = APB1_PreScaler[temp-4];
+		Apb_Pre = APB1_PreScaler[temp - 4];
 	}
 
-	pclk1 =  (SystemClk / ahbp) /apb1p;
+	PCLK1_Value = (((System_Clk) / Ahb_Pre) / Apb_Pre);
 
-	return pclk1;
+	return PCLK1_Value;
 }
 
 

@@ -126,19 +126,4 @@ void GPIO_IRQHandling(uint8_t PinNumber);		// PinNumber to know from which pin I
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #endif /* INC_STM32NUCLEOF429XXGPIO_DRIVER_H_ */

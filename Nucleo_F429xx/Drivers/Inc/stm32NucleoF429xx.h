@@ -643,6 +643,7 @@ typedef struct
 #include <stm32NucleoF429xxUSART_Driver.h>
 //#include <stm32NucleoF429xxSPI_Driver.h>
 //#include <stm32NucleoF429xxI2C_Driver.h>
+#include <stm32NucleoF429xx_rcc_driver.h>
 
 
 #endif /* DRIVERS_INC_STM32NUCLEOF76XXX_H_ */

@@ -121,25 +121,25 @@ void USART_SetbaudRate(USART_RegDef_t * pUSARTx, uint32_t BaudRate)
 	if (pUSARTx == USART1 || pUSARTx == USART6)
 	{
 		// Get APB2 PCLK value
-		PCLKx = 0;
+		PCLKx = RCC_GetPCLK2Value();
 
 	}
 	else
 	{
 		// Get APB1 PCLK Value
-		PCLKx = 0;
+		PCLKx = RCC_GetPCLK1Value();
 	}
 
 	//Check for OVER8 configuration bit
 	if (pUSARTx->USART_CR1 & (USART_CR1_OVER8 << 1))
 	{
 		//OVER8 = 1 , over sampling by 8
-		usartdiv = (PCLKx / (8 * BaudRate)) * 100;
+		usartdiv = (PCLKx * 100) / (8 * BaudRate);
 	}
 	else
 	{
 		//OVER8 = 0 , over sampling by 16
-		usartdiv = (PCLKx / (16 * BaudRate)) * 100;
+		usartdiv = (PCLKx * 100) / (16 * BaudRate);
 	}
 
 	M_Part = usartdiv/100;
@@ -162,51 +162,60 @@ void USART_SetbaudRate(USART_RegDef_t * pUSARTx, uint32_t BaudRate)
 	pUSARTx->USART_BRR = tempReg;
 }
 
+
 void USART_InIt(USART_Handle_t * pUSARTHandle)
 {
 	if (pUSARTHandle != NULL)
 	{
 		uint32_t tempReg = 0;
 
+		// Disable USART6 before configuration
+		pUSARTHandle->pUSARTx->USART_CR1 &= ~(USART_CR1_UE);
+
+		// Perform a software reset
+		pUSARTHandle->pUSARTx->USART_CR1 = 0;
+		pUSARTHandle->pUSARTx->USART_CR2 = 0;
+		pUSARTHandle->pUSARTx->USART_CR3 = 0;
+
 		/*********************** Configuration of CR1 Register ************************/
 
 		// Enable the clock for USART
-		USART_PeripheralControl(pUSARTHandle->pUSARTx, ENABLE);
+		USART_PeriClockControl(pUSARTHandle->pUSARTx, ENABLE);
 
 		// USART Mode
 		if (pUSARTHandle->USART_Config.USART_Mode == USART_MODE_ONLY_TX)
 		{
-			tempReg |= (1 << USART_CR1_TE);
+			pUSARTHandle->pUSARTx->USART_CR1 |= (1 << USART_CR1_TE);
 		}
 		else if (pUSARTHandle->USART_Config.USART_Mode == USART_MODE_ONLY_TX)
 		{
-			tempReg |= (1 << USART_CR1_RE);
+			pUSARTHandle->pUSARTx->USART_CR1 |= (1 << USART_CR1_RE);
 		}
 		else if (pUSARTHandle->USART_Config.USART_Mode == USART_MODE_TXRX)
 		{
-			tempReg |= (1 << USART_CR1_RE) | (1 << USART_CR1_TE);
+			pUSARTHandle->pUSARTx->USART_CR1 |= (1 << USART_CR1_RE) | (1 << USART_CR1_TE);
 		}
 
 		// Parity Control
 		if (pUSARTHandle->USART_Config.USART_ParityControl == USART_EVEN_PARITY_ENABLE)
 		{
-			tempReg |= (1 << USART_CR1_PCE);
+			pUSARTHandle->pUSARTx->USART_CR1 |= (1 << USART_CR1_PCE);
 
 			// Enable Even Parity
-			tempReg &= ~(1 << USART_CR1_PS);
+			pUSARTHandle->pUSARTx->USART_CR1 &= ~(1 << USART_CR1_PS);
 		}
 		else if (pUSARTHandle->USART_Config.USART_ParityControl == USART_ODD_PARITY_ENABLE)
 		{
-			tempReg |= (1 << USART_CR1_PCE);
+			pUSARTHandle->pUSARTx->USART_CR1 |= (1 << USART_CR1_PCE);
 
 			// Enable Odd Parity
-			tempReg |= (1 << USART_CR1_PS);
+			pUSARTHandle->pUSARTx->USART_CR1 |= (1 << USART_CR1_PS);
 		}
 
 		// USART Word Length
-		tempReg = (pUSARTHandle->USART_Config.USART_WordLength << USART_CR1_M);
+		pUSARTHandle->pUSARTx->USART_CR1 |= (pUSARTHandle->USART_Config.USART_WordLength << USART_CR1_M);
 
-		pUSARTHandle->pUSARTx->USART_CR1 = tempReg;
+//		pUSARTHandle->pUSARTx->USART_CR1 = tempReg;
 
 		/***************** Configuration of CR2 Register **************************/
 		tempReg = 0;

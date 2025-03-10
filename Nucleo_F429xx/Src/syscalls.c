@@ -30,6 +30,10 @@
 #include <sys/time.h>
 #include <sys/times.h>
 
+#include "stm32NucleoF429xx.h"
+
+extern USART_Handle_t usart6_handle;
+
 
 /* Variables */
 extern int __io_putchar(int ch) __attribute__((weak));
@@ -80,12 +84,14 @@ __attribute__((weak)) int _read(int file, char *ptr, int len)
 __attribute__((weak)) int _write(int file, char *ptr, int len)
 {
   (void)file;
-  int DataIdx;
+//  int DataIdx;
 
-  for (DataIdx = 0; DataIdx < len; DataIdx++)
-  {
-    __io_putchar(*ptr++);
-  }
+  USART_Tx(&usart6_handle, (uint8_t*)ptr,len);
+
+//  for (DataIdx = 0; DataIdx < len; DataIdx++)
+//  {
+//    __io_putchar(*ptr++);
+//  }
   return len;
 }
 

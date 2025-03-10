@@ -123,6 +123,9 @@ void GPIO_InIt(GPIO_CofigHandle_t * pGPIOHandle)
 	//1. Configure the mode of GPIO
 	uint32_t temp;
 
+	// Enable GPIO Peripheral Clock
+	GPIO_PeriClockControl(pGPIOHandle->pGPIOxBaseAddr, ENABLE);
+
 	if (pGPIOHandle->GPIOPinConfig.GPIO_PinMode <= GPIO_MODE_ANALOG)
 	{
 		/* set pin mode based on the pin number. multiply 2 because each pin has two bits*/
